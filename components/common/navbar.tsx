@@ -32,6 +32,7 @@ export const Navbar: React.FC = () => {
   }
   return (
     <Grid
+      zIndex="99"
       position="fixed"
       as="nav"
       bg="white"
@@ -40,14 +41,14 @@ export const Navbar: React.FC = () => {
       justifyItems="center"
       alignContent="center"
       gap="8em"
-      transform={isOpen ? "translateX(0)" : "translateX(-70%)"}
+      transform={isOpen ? "translateX(0)" : "translateX(-80%)"}
       transition="transform .3s"
     >
       <GridItem
         top={navToggler.top}
         right={navToggler.right}
         cursor="pointer"
-        p="2em"
+        p=".8em"
         position="fixed"
         >
         <IconButton
@@ -76,6 +77,7 @@ export const Navbar: React.FC = () => {
             bg="transparent"
             _hover={navHoverStyle}
             _focus={navHoverStyle}
+            _active={navHoverStyle}
             css={navStyle}
             cursor="pointer"
             h="2em"

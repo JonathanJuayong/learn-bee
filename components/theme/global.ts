@@ -5,4 +5,7 @@ export default {
     background: colors.bg.light,
     color: colors.text.primary
   },
+  "*:focus": {
+    boxShadow: "none"
+  }
 }
