@@ -1,5 +1,4 @@
-import { Box, ChakraProvider, GlobalStyle } from '@chakra-ui/react';
-import { Component } from 'react';
+import { ChakraProvider } from '@chakra-ui/react';
 import 'focus-visible/dist/focus-visible';
 import { AppProps } from 'next/app';
 import { theme } from '../components/theme';
