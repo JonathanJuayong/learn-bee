@@ -6,9 +6,9 @@ import Link from 'next/link';
 import { theme } from '../theme';
 
 export const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(true);
   const navItems: Array<[item: string, link: string]> = [
-    ["Feed", "/"],
+    ["Feed", "/feed"],
     ["Classes", "/"],
     ["Students", "/"],
     ["Workspace", "/"],
@@ -19,11 +19,11 @@ export const Navbar: React.FC = () => {
     color: `${theme.colors.text.tertiary}`,
     borderRight: `6px solid transparent`,
   }
-  const navHoverStyle = {
+  const navHoverStyle = isOpen ? {
     color: `${theme.colors.text.primary}`,
     fontWeight: 700,
     borderRight: `6px solid ${theme.colors.brand[100]}`,
-  }
+  } : undefined;
   const navToggler = {
     top: isOpen ? "0" : "",
     right: isOpen ? "" : "0",
@@ -58,11 +58,13 @@ export const Navbar: React.FC = () => {
           icon={navToggler.icon}
         />
       </GridItem>
-      <Image
-        src="/learnbee-logo.svg"
-        height={130}
-        width={130}
-      />
+      <GridItem>
+        <Image
+          src="/learnbee-logo.svg"
+          height={130}
+          width={130}
+        />
+      </GridItem>
       <Grid
         w="100%"
         gap="1em"
@@ -70,16 +72,17 @@ export const Navbar: React.FC = () => {
         {navItems.map(item => (
           <Grid
             as={Button}
-            variant="ghost"
             colorScheme={theme.colors.brand[100]}
-            borderRadius="0"
-            key={item[0]}
-            bg="transparent"
             _hover={navHoverStyle}
             _focus={navHoverStyle}
             _active={navHoverStyle}
             css={navStyle}
-            cursor="pointer"
+            disabled={!isOpen}
+            key={item[0]}
+            variant="ghost" // Button prop
+            borderRadius="0"
+            bg="transparent"
+            cursor={!isOpen ? "unset !important" : "pointer" }
             h="2em"
             transition="all 0.3s"
             alignItems="center"
@@ -89,7 +92,6 @@ export const Navbar: React.FC = () => {
             >
               <Text
                 as="a"
-                // pl="6.5em"
               >
                 {item[0]}
               </Text>
